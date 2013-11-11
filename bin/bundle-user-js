@@ -1,0 +1,11 @@
+#!/bin/bash
+
+P3_user_files=( jquery.jeditable.js caret.js jquery.ui.autocomplete.js jquery.ui.autocomplete.html.js jquery.ui.autocomplete.multiValue.js jquery.ui.autocomplete.match.js )
+
+echo '' > ../js/P3.user.bundle.js
+
+for file in ${P3_user_files[@]}
+do
+	cat "../js/$file" >> ../js/P3.user.bundle.js
+	echo >> ../js/P3.user.bundle.js
+done
