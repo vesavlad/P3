@@ -18,3 +18,9 @@ version 1.0.1
 
 version 1.0.2
 - fixed wrong ajax pop-ups
+
+version 1.0.3
+- Sanitizing input form user
+- using standard checked/selected functions
+- refactored custom header method
+
