@@ -24,7 +24,7 @@ $P3Options = get_option('P3Options');
  */
 class P3Ajax extends P3Ajax_Read {
 	public static function dispatch() {
-		$action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
+		$action = isset( $_REQUEST['action'] ) ? sanitize_text_field($_REQUEST['action']) : '';
 
 		do_action( "P3_ajax", $action );
 		if ( is_callable( array( 'P3Ajax', $action ) ) )
@@ -42,7 +42,7 @@ class P3Ajax extends P3Ajax_Read {
 		if ( !is_user_logged_in() ) {
 			die( '<p>'.__( 'Error: not logged in.', 'P3' ).'</p>' );
 		}
-		$post_id = $_GET['post_ID'];
+		$post_id = sanitize_text_field($_GET['post_ID']);
 		$post_id = substr( $post_id, strpos( $post_id, '-' ) + 1 );
 		if ( !current_user_can( 'edit_post', $post_id ) ) {
 			die( '<p>'.__( 'Error: not allowed to edit post.', 'P3' ).'</p>' );
@@ -86,7 +86,7 @@ class P3Ajax extends P3Ajax_Read {
 		if ( !is_user_logged_in() ) {
 			die( '<p>'.__( 'Error: not logged in.', 'P3' ).'</p>' );
 		}
-		$comment_id = $_GET['comment_ID'];
+		$comment_id = sanitize_text_field($_GET['comment_ID']);
 		$comment_id = substr( $comment_id, strpos( $comment_id, '-' ) + 1);
 		$comment = get_comment($comment_id);
 		echo apply_filters( 'P3_get_comment_content', $comment->comment_content, $comment_id );
@@ -101,7 +101,7 @@ class P3Ajax extends P3Ajax_Read {
 			die( '<p>'.__( 'Error: not logged in.', 'P3' ).'</p>' );
 		}
 
-		$post_id = $_POST['post_ID'];
+		$post_id = sanitize_text_field($_POST['post_ID']);
 		$post_id = substr( $post_id, strpos( $post_id, '-' ) + 1 );
 
 		if ( !current_user_can( 'edit_post', $post_id )) {
@@ -110,16 +110,16 @@ class P3Ajax extends P3Ajax_Read {
 
 		$post_format = P3_get_post_format( $post_id );
 
-		$new_post_content = $_POST['content'];
+		$new_post_content = sanitize_text_field($_POST['content']);
 
 		// Add the quote citation to the content if it exists
 		if ( ! empty( $_POST['citation'] ) && 'quote' == $post_format ) {
-			$new_post_content = '<p>' . $new_post_content . '</p><cite>' . $_POST['citation'] . '</cite>';
+			$new_post_content = '<p>' . $new_post_content . '</p><cite>' . sanitize_text_field($_POST['citation']) . '</cite>';
 		}
 
-		$new_tags = $_POST['tags'];
+		$new_tags = sanitize_text_field($_POST['tags']);
 
-		$new_post_title = isset( $_POST['title'] ) ? $_POST['title'] : '';
+		$new_post_title = isset( $_POST['title'] ) ? sanitize_text_field($_POST['title']) : '';
 
 		if ( ! empty( $new_post_title ) )
 			$post_title = $new_post_title;
@@ -162,7 +162,7 @@ class P3Ajax extends P3Ajax_Read {
 			die( '<p>'.__( 'Error: not logged in.', 'P3' ).'</p>' );
 		}
 
-		$comment_id	= $_POST['comment_ID'];
+		$comment_id	= sanitize_text_field($_POST['comment_ID']);
 		$comment_id = substr( $comment_id, strpos( $comment_id, '-' ) + 1);
 		$comment = get_comment( $comment_id );
 
@@ -170,7 +170,7 @@ class P3Ajax extends P3Ajax_Read {
 			die( '<p>'.__( 'Error: not allowed to edit this comment.', 'P3' ).'</p>' );
 		}
 
-		$comment_content = $_POST['comment_content'];
+		$comment_content = sanitize_text_field($_POST['comment_content']);
 
 		wp_update_comment( array(
 			'comment_content'	=> $comment_content,
@@ -195,7 +195,7 @@ class P3Ajax extends P3Ajax_Read {
 		}
 		
 		if ( ! ( current_user_can( 'publish_posts' ) ||
-		        ($P3Options['P3_allow_users_publish'] ) && $user_ID )) ) {
+		       ( $P3Options['P3_allow_users_publish'] ) && $user_ID ) ) {
 
 			die( '<p>'.__( 'Error: not allowed to post.', 'P3' ).'</p>' );
 		}
@@ -204,10 +204,10 @@ class P3Ajax extends P3Ajax_Read {
 
 		$user           = wp_get_current_user();
 		$user_id        = $user->ID;
-		$post_content   = $_POST['posttext'];
-		$tags           = trim( $_POST['tags'] );
-		$title          = $_POST['post_title'];
-		$post_type      = isset( $_POST['post_type'] ) ? $_POST['post_type'] : 'post';
+		$post_content   = sanitize_text_field($_POST['posttext']);
+		$tags           = trim( sanitize_text_field($_POST['tags'] ));
+		$title          = sanitize_text_field($_POST['post_title']);
+		$post_type      = isset( $_POST['post_type'] ) ? sanitize_text_field($_POST['post_type']) : 'post';
 
 		// Strip placeholder text for tags
 		if ( __( 'Tag it', 'P3' ) == $tags )
@@ -222,11 +222,11 @@ class P3Ajax extends P3Ajax_Read {
 		$post_format = 'status';
 		$accepted_post_formats = apply_filters( 'P3_accepted_post_cats', P3_get_supported_post_formats() ); // Keep 'P3_accepted_post_cats' filter for back compat (since P3 1.3.4)
 		if ( in_array( $_POST['post_format'], $accepted_post_formats ) )
-			$post_format = $_POST['post_format'];
+			$post_format = sanitize_text_field($_POST['post_format']);
 
 		// Add the quote citation to the content if it exists
 		if ( ! empty( $_POST['post_citation'] ) && 'quote' == $post_format )
-			$post_content = '<p>' . $post_content . '</p><cite>' . $_POST['post_citation'] . '</cite>';
+			$post_content = '<p>' . $post_content . '</p><cite>' . sanitize_text_field($_POST['post_citation']) . '</cite>';
 
 		$post_id = wp_insert_post( array(
 			'post_author'   => $user_id,

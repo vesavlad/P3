@@ -7,7 +7,7 @@
 
 class P3Ajax_Read {
 	public static function dispatch() {
-		$action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
+		$action = isset( $_REQUEST['action'] ) ? sanitize_text_field($_REQUEST['action']) : '';
 
 		do_action( "P3_ajax", $action );
 		if ( is_callable( array( 'P3Ajax_Read', $action ) ) ) {
@@ -29,7 +29,7 @@ class P3Ajax_Read {
 
 	public static function tag_search() {
 		global $wpdb;
-		$term = $_GET['term'];
+		$term = sanitize_text_field($_GET['term']);
 		if ( false !== strpos( $term, ',' ) ) {
 			$term = explode( ',', $term );
 			$term = $term[count( $term ) - 1];
@@ -57,8 +57,8 @@ class P3Ajax_Read {
 	public static function get_latest_posts() {
 		global $post_request_ajax;
 
-		$load_time = $_GET['load_time'];
-		$frontpage = $_GET['frontpage'];
+		$load_time = sanitize_text_field($_GET['load_time']);
+		$frontpage = sanitize_text_field($_GET['frontpage']);
 		$num_posts = 10; // max amount of posts to load
 		$number_of_new_posts = 0;
 		$visible_posts = isset( $_GET['vp'] ) ? (array)$_GET['vp'] : array();
@@ -100,9 +100,9 @@ class P3Ajax_Read {
 		global $wpdb, $comments, $comment, $max_depth, $depth, $user_login, $user_ID, $user_identity;
 
 		$number = 10; //max amount of comments to load
-		$load_time = $_GET['load_time'];
-		$lc_widget = $_GET['lcwidget'];
-		$visible_posts = isset($_GET['vp'])? (array)$_GET['vp'] : array();
+		$load_time = sanitize_text_field($_GET['load_time']);
+		$lc_widget = sanitize_text_field($_GET['lcwidget']);
+		$visible_posts = isset($_GET['vp'])? (array)sanitize_text_field($_GET['vp']) : array();
 
 		if ( get_option( 'thread_comments' ) )
 			$max_depth = get_option( 'thread_comments_depth' );
@@ -173,8 +173,8 @@ class P3Ajax_Read {
 
 		check_ajax_referer( 'ajaxnonce', '_ajax_post' );
 
-		$comment_content = isset( $_POST['comment'] ) ? trim( $_POST['comment'] ) : null;
-		$comment_post_ID = isset( $_POST['comment_post_ID'] ) ? trim( $_POST['comment_post_ID'] ) : null;
+		$comment_content = isset( $_POST['comment'] ) ? trim( sanitize_text_field($_POST['comment']) ) : null;
+		$comment_post_ID = isset( $_POST['comment_post_ID'] ) ? trim( sanitize_text_field($_POST['comment_post_ID']) ) : null;
 
 		$user = wp_get_current_user();
 
@@ -189,9 +189,9 @@ class P3Ajax_Read {
 			if ( get_option( 'comment_registration' ) ) {
 			    die( '<p>'.__( 'Error: you must be logged in to post a comment.', 'P3' ).'</p>' );
 			}
-			$comment_author       = ( isset($_POST['author']) )  ? trim(strip_tags($_POST['author'])) : null;
-			$comment_author_email = ( isset($_POST['email']) )   ? trim($_POST['email']) : null;
-			$comment_author_url   = ( isset($_POST['url']) )     ? trim($_POST['url']) : null;
+			$comment_author       = ( isset($_POST['author']) )  ? trim(strip_tags(sanitize_text_field($_POST['author']))) : null;
+			$comment_author_email = ( isset($_POST['email']) )   ? trim(sanitize_text_field($_POST['email'])) : null;
+			$comment_author_url   = ( isset($_POST['url']) )     ? trim(sanitize_text_field($_POST['url'])) : null;
 		}
 
 		$comment_type = '';
@@ -206,7 +206,7 @@ class P3Ajax_Read {
 		if ( '' == $comment_content )
 		    die( '<p>'.__( 'Error: Please type a comment.', 'P3' ).'</p>' );
 
-		$comment_parent = isset( $_POST['comment_parent'] ) ? absint( $_POST['comment_parent'] ) : 0;
+		$comment_parent = isset( $_POST['comment_parent'] ) ? absint( sanitize_text_field($_POST['comment_parent']) ) : 0;
 
 		$commentdata = compact( 'comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID' );
 

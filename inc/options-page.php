@@ -141,7 +141,7 @@ class P3_Options {
 						<th scope="row"><?php _e( 'Posting Access:', 'P3' ); ?></th>
 						<td>
 
-						<input id="P3_allow_users_publish" type="checkbox" name="P3_allow_users_publish" <?php if ( $P3options["P3_allow_users_publish"] == 1 ) echo 'checked="checked"'; ?> value="1" />
+						<input id="P3_allow_users_publish" type="checkbox" name="P3_allow_users_publish" <?php checked( $P3options["P3_allow_users_publish"], 1 ); ?> value="1" />
 
 						<?php if ( defined( 'IS_WPCOM' ) && IS_WPCOM )
 								$msg = __( 'Allow any WordPress.com member to post', 'P3' );
@@ -157,7 +157,7 @@ class P3_Options {
 						<th scope="row"><?php _e( 'Hide Threads:', 'P3' ); ?></th>
 						<td>
 
-						<input id="P3_hide_threads" type="checkbox" name="P3_hide_threads" <?php if ( $P3options["P3_hide_threads"] == 1 ) echo 'checked="checked"'; ?> value="1" />
+						<input id="P3_hide_threads" type="checkbox" name="P3_hide_threads" <?php checked( $P3options["P3_hide_threads"], 1 ); ?> value="1" />
 						<label for="P3_hide_threads"><?php _e( 'Hide comment threads by default', 'P3' ); ?></label>
 
 						</td>
@@ -195,20 +195,20 @@ class P3_Options {
 					<tr valign="top">
 						<th scope="row"><?php _e( 'Background Image:', 'P3' ); ?></th>
 						<td>
-							<input type="radio" id="bi_none" name="P3_background_image" value="none"<?php if ( 'none' == $P3options["P3_background_image"] ) : ?> checked="checked" <?php endif; ?>/> <label for="bi_none"><?php _e( 'None', 'P3' ); ?></label><br />
-							<input type="radio" id="bi_disolve" name="P3_background_image" value="disolve" <?php if( 'disolve' == $P3options["P3_background_image"] ) : ?> checked="checked" <?php endif; ?>/> <label for="bi_disolve"><?php _e( 'Disolve', 'P3'); ?></label><br />
-							<input type="radio" id="bi_bubbles" name="P3_background_image" value="bubbles"<?php if ( 'bubbles' == $P3options["P3_background_image"] ) : ?> checked="checked" <?php endif; ?>/> <label for="bi_bubbles"><?php _e( 'Bubbles', 'P3' ); ?></label><br />
-							<input type="radio" id="bi_polka" name="P3_background_image" value="dots"<?php if ( 'dots' == $P3options["P3_background_image"] ) : ?> checked="checked" <?php endif; ?>/> <label for="bi_polka"><?php _e( 'Polka Dots', 'P3' ); ?></label><br />
-							<input type="radio" id="bi_squares" name="P3_background_image" value="squares"<?php if ( 'squares' == $P3options["P3_background_image"] ) : ?> checked="checked" <?php endif; ?>/> <label for="bi_squares"><?php _e( 'Squares', 'P3' ); ?></label><br />
-							<input type="radio" id="bi_plaid" name="P3_background_image" value="plaid"<?php if ( 'plaid' == $P3options["P3_background_image"] ) : ?> checked="checked" <?php endif; ?>/> <label for="bi_plaid"><?php _e( 'Plaid', 'P3' ); ?></label><br />
-							<input type="radio" id="bi_stripes" name="P3_background_image" value="stripes"<?php if ( 'stripes' == $P3options["P3_background_image"] ) : ?> checked="checked" <?php endif; ?>/> <label for="bi_stripes"><?php _e( 'Stripes', 'P3' ); ?></label><br />
-							<input type="radio" id="bi_santa" name="P3_background_image" value="santa"<?php if ( 'santa' == $P3options["P3_background_image"] ) : ?> checked="checked" <?php endif; ?>/> <label for="bi_santa"><?php _e( 'Santa', 'P3' ); ?></label>
+							<input type="radio" id="bi_none" name="P3_background_image" value="none" <?php checked( $P3options["P3_background_image"], 'none' ); ?>/> <label for="bi_none"><?php _e( 'None', 'P3' ); ?></label><br />
+							<input type="radio" id="bi_disolve" name="P3_background_image" value="disolve" <?php checked( $P3options["P3_background_image"], 'disolve' ); ?>/> <label for="bi_disolve"><?php _e( 'Disolve', 'P3'); ?></label><br />
+							<input type="radio" id="bi_bubbles" name="P3_background_image" value="bubbles"<?php checked( $P3options["P3_background_image"], 'bubbles' ); ?>/> <label for="bi_bubbles"><?php _e( 'Bubbles', 'P3' ); ?></label><br />
+							<input type="radio" id="bi_polka" name="P3_background_image" value="dots" <?php checked( $P3options["P3_background_image"], 'dots' ); ?>/> <label for="bi_polka"><?php _e( 'Polka Dots', 'P3' ); ?></label><br />
+							<input type="radio" id="bi_squares" name="P3_background_image" value="squares" <?php checked( $P3options["P3_background_image"], 'squares' ); ?>/> <label for="bi_squares"><?php _e( 'Squares', 'P3' ); ?></label><br />
+							<input type="radio" id="bi_plaid" name="P3_background_image" value="plaid" <?php checked( $P3options["P3_background_image"], 'plaid' ); ?>/> <label for="bi_plaid"><?php _e( 'Plaid', 'P3' ); ?></label><br />
+							<input type="radio" id="bi_stripes" name="P3_background_image" value="stripes" <?php checked( $P3options["P3_background_image"], 'stripes' ); ?> /> <label for="bi_stripes"><?php _e( 'Stripes', 'P3' ); ?></label><br />
+							<input type="radio" id="bi_santa" name="P3_background_image" value="santa" <?php checked( $P3options["P3_background_image"], 'santa' ); ?>/> <label for="bi_santa"><?php _e( 'Santa', 'P3' ); ?></label>
 						</td>
 					</tr>
 					<tr valign="top">
 						<th scope="row"><?php _e( 'Sidebar display:', 'P3' ); ?></th>
 						<td>
-							<input id="P3_hide_sidebar" type="checkbox" name="P3_hide_sidebar" <?php if ( $P3options["P3_hide_sidebar"] ) echo 'checked="checked"'; ?> value="1" />
+							<input id="P3_hide_sidebar" type="checkbox" name="P3_hide_sidebar" <?php checked( $P3options["P3_hide_sidebar"], 1 ); ?> value="1" />
 							<label for="P3_hide_sidebar"><?php _e( 'Hide the Sidebar', 'P3' ); ?></label>
 						</td>
 					</tr>
@@ -222,7 +222,7 @@ class P3_Options {
 					<tr>
 						<th><?php _e( 'Post Titles:', 'P3' )?></th>
 						<td>
-							<input id="prologue_show_titles" type="checkbox" name="prologue_show_titles" <?php if ( $P3options["prologue_show_titles"] != 0 ) echo 'checked="checked"'; ?> value="1" />
+							<input id="prologue_show_titles" type="checkbox" name="prologue_show_titles" <?php checked( $P3options["prologue_show_titles"], 1 ); ?> value="1" />
 							<label for="prologue_show_titles"><?php _e( 'Display titles', 'P3' ); ?></label>
 						</td>
 					</tr>

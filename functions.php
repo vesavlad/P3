@@ -528,8 +528,8 @@ function P3_new_post_noajax() {
 	check_admin_referer( 'new-post' );
 
 	$user_id        = $current_user->ID;
-	$post_content   = $_POST['posttext'];
-	$tags           = $_POST['tags'];
+	$post_content   = sanitize_text_field($_POST['posttext']);
+	$tags           = sanitize_text_field($_POST['tags']);
 
 	$post_title = P3_title_from_content( $post_content );
 
@@ -543,7 +543,7 @@ function P3_new_post_noajax() {
 
 	$post_format = 'status';
 	if ( in_array( $_POST['post_format'], P3_get_supported_post_formats() ) )
-		$post_format = $_POST['post_format'];
+		$post_format = sanitize_text_field($_POST['post_format']);
 
 	set_post_format( $post_id, $post_format );
 
