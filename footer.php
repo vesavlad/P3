@@ -11,7 +11,7 @@
 
 <div id="footer">
 	<p>
-	    <?php printf( __( 'Theme: %1$s by %2$s. Based on P3 Theme by %3$s', 'p3' ), 'P3', '<a href="http://www.kano.ro/" rel="designer">Kano</a>', '<a href="http://www.automattic.com/" rel="designer">Automattic</a>' ); ?>
+	    <?php printf( __( 'Theme: %1$s by %2$s. Based on P2 Theme by %3$s', 'p3' ), 'P3', '<a href="http://www.kano.ro/" rel="designer">Kano</a>', '<a href="http://www.automattic.com/" rel="designer">Automattic</a>' ); ?>
 	</p>
 </div>
 

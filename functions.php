@@ -256,8 +256,9 @@ function P3_background_image() {
 		body {
 			background-image: url( <?php echo get_template_directory_uri() . '/i/backgrounds/disolve.png' ?> );
 			background-position: top center;
-			background-repeat: no-repeat;
+			background-repeat: repeat-x;
 			background-attachment: fixed;
+			background-color: #d8d8d8;
 		}
 	</style>
 <?php
@@ -668,7 +669,7 @@ function P3_hidden_sidebar_css() {
 	<style type="text/css">
 		.sleeve_main { <?php echo $sleeve_margin;?> }
 		#wrapper { background: transparent; }
-		#header, #footer, #wrapper { width: 760px; }
+		#header, #footer, #navigation, #wrapper { width: 760px; }
 	</style>
 	<?php endif;
 }

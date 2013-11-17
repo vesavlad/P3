@@ -42,9 +42,8 @@ function P3_admin_header_style() {
 	<style type="text/css">
 	#headimg {
 		background: url('<?php echo esc_url( get_header_image() ); ?>') repeat;
+		background-position: top center;
 		padding: 0 0 0 10px;
-		width: <?php echo get_custom_header()->width; ?>px;
-		height: <?php echo get_custom_header()->height; ?>px;
 	}
 	#headimg a {
 		width: <?php echo get_custom_header()->width; ?>px;
@@ -100,12 +99,11 @@ function P3_header_style() {
 	<style id="P3-header-style" type="text/css">
 	<?php if ( '' != get_header_image() ) : ?>
 		#header {
-			background: url('<?php echo esc_url( get_header_image() ); ?>') repeat-y center top;
+			background: url('<?php echo esc_url( get_header_image() ); ?>') repeat-x center top;
 			height: <?php echo get_custom_header()->height; ?>px;
 			width: 100%;
-			position: fixed;
-			top: 0px;
-			left: 0px;
+			background-attachment: fixed;
+			overflow: hidden;
 		}
 		#header a.secondary {
 			display: block;
@@ -128,9 +126,10 @@ function P3_header_style() {
 			-moz-box-shadow: none !important;
 			box-shadow: none !important;
 		}
-		#wrapper {
-			margin-top: 220px;	
+		#navigation{
+			margin-top:-50px;
 		}
+		
 	<?php endif;
 
 	$text_color = get_header_textcolor();

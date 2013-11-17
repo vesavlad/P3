@@ -4,7 +4,7 @@ Theme URI: http://vlad.kano.ro/p3-theme/
 Author: Kano
 Author URI: http://vlad.kano.ro/
 Description: A group blog theme for short update messages. This theme is an optimised version for a very known theme named P2. Featuring: Hassle-free posting from the front page. Perfect for group blogging, or as a liveblog theme. Dynamic page updates. Threaded comment display on the front page. In-line editing for posts and comments. Live tag suggestion based on previously used tags. A show/hide feature for comments, to keep things tidy. Real-time notifications when a new comment or update is posted. Super-handy keyboard shortcuts. Helvetica Neue for you modern font lovers.
-Version: 1.0.3
+Version: 1.0.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blue, custom-colors, two-columns, fixed-width, rtl-language-support, right-sidebar, white, light, front-page-post-form, translation-ready, custom-background, custom-header, custom-menu, post-formats, sticky-post, theme-options
@@ -132,12 +132,14 @@ blockquote + blockquote {
 	*/
 	margin: 10px 0px;
 }
+#navigation{
+	clear: both;
+	width: 1024px;
+	margin: 0 auto;
+	position: relative;
+}
+
 #wrapper {
-	/* this is #sidebar bg */
-	/*	
-	border: solid;
-	border-width: 1px;
-	*/
 	clear: both;
 	width: 1024px;
 	margin: 0 auto;
@@ -371,8 +373,10 @@ h2 img {
 #main p img {
 	vertical-align: top;
 	padding: 2px;
+	/* removed border arround images
 	border-style: solid;
 	border-width: 1px;
+	*/
 	display: block;
 }
 .attachment #main .entry .attachment-image {
@@ -1662,8 +1666,10 @@ form.textedit textarea {
 }
 .postcontent table td,
 .commentcontent table td {
+	/* removed border to enhance better customization of page
 	border: 1px solid #ccc;
 	border-width: 1px 0 0 1px;
+	*/
 	padding: 6px 15px;
 }
 .postcontent table th,
@@ -1876,13 +1882,6 @@ div.possibly-related {
 
 /* =Menu
 ----------------------------------------------- */
-
-.main-navigation {
-	clear: both;
-	float: left;
-	margin: 10px 0;
-	width: 100%;
-}
 .main-navigation a:hover {
 	border: none;
 }

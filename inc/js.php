@@ -119,9 +119,9 @@ class P3_JS {
 
 		// Enqueue P3 JS
 		wp_enqueue_script( 'P3js',
-			P3_JS_URL . '/P3.js',
+			P3_JS_URL . '/p3.js',
 			$depends,
-			'20130607'
+			'20131117'
 		);
 
 		wp_localize_script( 'P3js', 'P3txt', array(

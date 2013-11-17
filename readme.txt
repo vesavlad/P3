@@ -24,3 +24,10 @@ version 1.0.3
 - using standard checked/selected functions
 - refactored custom header method
 
+version 1.0.4
+- fixed showing of main menu when activating custom header image
+- removed default bordering for images and tables (thanks @Eden for submitting this feature request)
+- fixed footer text
+- fixed background color when selecting disolve background type
+- removed width, height constrains for custom header image inside backpannel administration
+
