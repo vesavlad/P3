@@ -102,7 +102,7 @@ class P3Ajax_Read {
 		$number = 10; //max amount of comments to load
 		$load_time = sanitize_text_field($_GET['load_time']);
 		$lc_widget = sanitize_text_field($_GET['lcwidget']);
-		$visible_posts = isset($_GET['vp'])? (array)sanitize_text_field($_GET['vp']) : array();
+		$visible_posts = isset($_GET['vp'])? (array)($_GET['vp']) : array();
 
 		if ( get_option( 'thread_comments' ) )
 			$max_depth = get_option( 'thread_comments_depth' );

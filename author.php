@@ -32,7 +32,7 @@
 		<?php else : ?>
 
 		<h2><?php _e( 'Not Found', 'P3' ); ?></h2>
-		<p><?php _e( 'Apologies, but the page you requested could not be found.', 'P3' ); ?></p>
+		<p><?php _e( 'Apologies, looks like this author does not have any posts.', 'P3' ); ?></p>
 
 		<?php endif; // end have_posts() ?>
 

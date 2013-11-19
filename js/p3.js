@@ -122,7 +122,7 @@ window.P3 = window.P3 || {};
 			$( '.inputarea, #comment, .comment-reply-link, #comment-submit' ).click( function( event ) {
 				$.ajax({
 					type: 'POST',
-					url: ajaxReadUrl +'&action=logged_in_out&_loggedin=' + nonce,
+					url: ajaxReadUrl +'&action=logged_in_out&_loggedin=' + nonce + "&rand=" + Math.random(),
 					success: function( response ) {
 						if ( 'logged_in' != response ) {
 							// Authentication failure, this message should persist on the screen so the logged out user can click the login link.
@@ -483,7 +483,7 @@ window.P3 = window.P3 || {};
 
 		// Activate keyboard navigation
 		if (!isSingle)	{
-			document.onkeydown = function(e) {
+			document.onkeypress = function(e) {
 				e = e || window.event;
 				if (e.target)
 					element = e.target;
@@ -699,17 +699,20 @@ window.P3 = window.P3 || {};
 							$('#help').hide();
 
 						break;
-					case 0,191:
+					case 0:
+					case 191:
 						$("#help").toggle();
 						if (e.preventDefault)
 							e.preventDefault();
 						else
 							e.returnValue = false;
 						break;
+					default:
+						break;
 				}
 			};
 		}
-	}
+	};
 
 	P3.plugins = {
 		fluid: function( value ) {
@@ -864,6 +867,7 @@ window.P3 = window.P3 || {};
 								}
 							}
 							tearDownEditor();
+							$( document ).trigger( 'p3_edit_post_submit', { 'post_id' : postId, 'result' : result } );
 						},
 						'json');
 
@@ -1060,6 +1064,7 @@ window.P3 = window.P3 || {};
 						thisFormElements.removeAttr( 'disabled' );
 
 					thisFormElements.removeClass('disabled');
+					$( document ).trigger( 'p3_new_post_submit_success', { 'post_id' : result } );
 				  },
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
 					submitProgress.fadeOut();
@@ -1071,6 +1076,7 @@ window.P3 = window.P3 || {};
 						thisFormElements.removeAttr( 'disabled' );
 
 					thisFormElements.removeClass('disabled');
+					$( document ).trigger( 'p3_new_post_submit_error', { 'request' : XMLHttpRequest, 'status' : textStatus, 'error' : errorThrown } );
 				},
 				timeout: 60000
 			});
@@ -1168,7 +1174,7 @@ window.P3 = window.P3 || {};
 		localizeMicroformatDates: function( scopeElem ) {
 			(scopeElem? $('abbr', scopeElem) : $('abbr')).each(function() {
 				var t     = $( this ),
-					title = t.attr( 'title' )
+					title = t.attr( 'title' );
 					date  = false;
 
 				if ( 'undefined' === typeof title )
@@ -1176,7 +1182,7 @@ window.P3 = window.P3 || {};
 
 				date = locale.parseISO8601( title );
 
-				if ( date )
+				if ( date && date > 0)
 					t.html(P3txt.date_time_format.replace('%1$s', locale.date(P3txt.time_format, date)).replace('%2$s', locale.date(P3txt.date_format, date)));
 			});
 		},
@@ -1194,7 +1200,7 @@ window.P3 = window.P3 || {};
 			var maybeLoggedIn = $.ajax({
 				type: 'POST',
 				async: false,
-				url: ajaxReadUrl +'&action=logged_in_out&_loggedin=' + nonce,
+				url: ajaxReadUrl +'&action=logged_in_out&_loggedin=' + nonce + "&rand=" + Math.random(),
 				timeout: 60000
 			}).responseText;
 
@@ -1234,16 +1240,17 @@ window.P3 = window.P3 || {};
 			P3.utility.titleCount();
 		},
 		titleCount: function() {
-			if (isFirstFrontPage) {
-				var n = $('li.newupdates').length;
-			} else {
-				var n = newUnseenUpdates;
+			var n = newUnseenUpdates; 
+ 		    if ( isFirstFrontPage ) { 
+ 		    	var updates = $( 'li.newupdates' ); 
+ 		        if ( updates ) 
+ 		        	n = updates.length;
 			}
 			if ( n <= 0 ) {
 				if (document.title.match(/\([\d+]\)/)) {
 					document.title = document.title.replace(/(.*)\([\d]+\)(.*)/, "$1$2");
 				}
-				P3.plugins.fluid("");
+				P3.plugins.fluid('');
 			} else {
 				if (document.title.match(/\((\d+)\)/)) {
 					document.title = document.title.replace(/\((\d+)\)/ , "(" + n + ")" );
@@ -1338,5 +1345,5 @@ window.P3 = window.P3 || {};
 			$( 'textarea#posttext' ).val( $( 'textarea#posttext' ).val() + media );
 			tb_remove();
 		}
-	}
+	};
 })( jQuery );

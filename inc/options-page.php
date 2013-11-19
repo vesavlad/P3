@@ -158,7 +158,7 @@ class P3_Options {
 						<td>
 
 						<input id="P3_hide_threads" type="checkbox" name="P3_hide_threads" <?php checked( $P3options["P3_hide_threads"], 1 ); ?> value="1" />
-						<label for="P3_hide_threads"><?php _e( 'Hide comment threads by default', 'P3' ); ?></label>
+						<label for="P3_hide_threads"><?php _e( 'Hide comment threads by default on all non-single views', 'P3' ); ?></label>
 
 						</td>
 					</tr>

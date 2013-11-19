@@ -60,7 +60,7 @@ class P3_JS {
 			'P3-user-bundle',
 			P3_JS_URL . '/P3.user.bundle.js',
 			array( 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-position' ),
-			'20110405' );
+			'20130819' );
 
 		wp_register_script(
 			'scrollit',
@@ -72,7 +72,7 @@ class P3_JS {
 			'wp-locale',
 			P3_JS_URL . '/wp-locale.js',
 			array(),
-			'20110415' );
+			'20130819' );
 
 		// Media upload script registered based on info in script-loader.
 		wp_register_script(
@@ -237,7 +237,7 @@ class P3_JS {
 			var wpUrl                   = "<?php echo esc_js( site_url() ); ?>";
 			var rssUrl                  = "<?php esc_js( get_bloginfo( 'rss_url' ) ); ?>";
 			var pageLoadTime            = "<?php echo gmdate( 'Y-m-d H:i:s' ); ?>";
-			var original_title          = document.title;
+			//var original_title          = document.title;
 			var commentsOnPost          = new Array;
 			var postsOnPage             = new Array;
 			var postsOnPageQS           = '';
@@ -272,7 +272,7 @@ function P3_toggle_threads() {
 				$('.commentlist').show();
 				$('.discussion').hide();
 			}
-			<?php if ( (int) $hide_threads ) : ?>
+			<?php if ( (int) $hide_threads && ! is_singular()) : ?>
 				hideComments();
 			<?php endif; ?>
 

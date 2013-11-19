@@ -29,10 +29,10 @@
 <?php $post_format = isset( $_GET['p'] ) ? $_GET['p'] : 'status'; ?>
 <div id="postbox">
 		<ul id="post-types">
-			<li><a id="status" class="post-format-button"<?php if ( 'status' == $post_format ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=status' ); ?>" title="<?php esc_attr_e( 'Status Update', 'P3' ); ?>"><?php _e( 'Status Update', 'P3' ); ?></a></li>
-			<li><a id="post" class="post-format-button"<?php if ( 'post' == $post_format || 'standard' == $post_format ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=post' ); ?>" title="<?php esc_attr_e( 'Blog Post', 'P3' ); ?>"><?php _e( 'Blog Post', 'P3' ); ?></a></li>
-			<li><a id="quote" class="post-format-button"<?php if ( 'quote' == $post_format ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=quote' ); ?>" title="<?php esc_attr_e( 'Quote', 'P3' ); ?>"><?php _e( 'Quote', 'P3' ); ?></a></li>
-			<li><a id="link" class="post-format-button"<?php if ( 'link' == $post_format ) : ?> class="selected"<?php endif; ?> href="<?php echo site_url( '?p=link' ); ?>" title="<?php esc_attr_e( 'Link', 'P3' ); ?>"><?php _e( 'Link', 'P3' ); ?></a></li>
+			<li><a id="status" class="post-format-button<?php if ( 'status' == $post_format ) : ?> selected<?php endif; ?>" href="<?php echo site_url( '?p=status' ); ?>" title="<?php esc_attr_e( 'Status Update', 'p3' ); ?>"><?php _e( 'Status Update', 'p3' ); ?></a></li>
+			<li><a id="post" class="post-format-button<?php if ( 'post' == $post_format || 'standard' == $post_format ) : ?> selected<?php endif; ?>" href="<?php echo site_url( '?p=post' ); ?>" title="<?php esc_attr_e( 'Blog Post', 'p3' ); ?>"><?php _e( 'Blog Post', 'p3' ); ?></a></li>
+			<li><a id="quote" class="post-format-button<?php if ( 'quote' == $post_format ) : ?> selected<?php endif; ?>" href="<?php echo site_url( '?p=quote' ); ?>" title="<?php esc_attr_e( 'Quote', 'p3' ); ?>"><?php _e( 'Quote', 'p3' ); ?></a></li> 
+			<li><a id="link" class="post-format-button<?php if ( 'link' == $post_format ) : ?> selected<?php endif; ?>" href="<?php echo site_url( '?p=link' ); ?>" title="<?php esc_attr_e( 'Link', 'p3' ); ?>"><?php _e( 'Link', 'p3' ); ?></a></li> 
 		</ul>
 
 		<div class="avatar">
