@@ -31,3 +31,6 @@ version 1.0.4
 - fixed background color when selecting disolve background type
 - removed width, height constrains for custom header image inside backpannel administration
 
+version 1.0.4
+- fixed Google Chrome comment issue
+- fixed need to reload page to see new submitted comment
