@@ -90,7 +90,7 @@ class P3_Recent_Comments extends WP_Widget {
 		// Only use the URLs #fragment if the comment is visible on the page.
 		// Works by detecting if the comment's post is visible on the page... may break if P3 decides to do clever stuff with comments when paginated
 		$comment_url = get_comment_link( $comment );
-		if ( '1' === get_option( 'p2_hide_threads' ) )
+		if ( '1' === get_option( 'hidethreads' ) )
 			return $comment_url;
 		if ( defined( 'DOING_AJAX' ) && isset( $_GET['vp'] ) && is_array( $_GET['vp'] ) && in_array( $comment->comment_post_ID, $_GET['vp'] ) ) {
 			$comment_url = "#comment-{$comment->comment_ID}";

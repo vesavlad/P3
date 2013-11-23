@@ -100,7 +100,7 @@ function P3_header_style() {
 	<?php if ( '' != get_header_image() ) : ?>
 		#header {
 			background: url('<?php echo esc_url( get_header_image() ); ?>') repeat-x center top;
-			height: <?php echo get_custom_header()->height; ?>px;
+			height: 215px;
 			width: 100%;
 			background-attachment: fixed;
 			overflow: hidden;
@@ -127,7 +127,7 @@ function P3_header_style() {
 			box-shadow: none !important;
 		}
 		#navigation{
-			margin-top:-50px;
+			margin-top:0px;
 		}
 		
 	<?php endif;

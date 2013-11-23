@@ -6,6 +6,8 @@
  */
 ?>
 <?php get_header(); ?>
+<div id="wrapper">
+	<?php get_sidebar('main'); ?>
 
 <div class="sleeve_main">
 	<?php if ( P3_user_can_post() && !is_archive() ) : ?>
@@ -45,4 +47,7 @@
 
 </div> <!-- sleeve -->
 
+<div class="clear"></div>
+	<?php get_sidebar('footer'); ?>
+</div> <!-- // wrapper -->
 <?php get_footer(); ?>

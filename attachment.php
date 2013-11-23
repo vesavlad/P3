@@ -6,6 +6,8 @@
  */
 ?>
 <?php get_header(); ?>
+<div id="wrapper">
+	<?php get_sidebar('main'); ?>
 
 <div id="postpage">
 
@@ -90,5 +92,7 @@
 	</div>
 
 </div>
-
+<div class="clear"></div>
+<?php get_sidebar('footer'); ?>
+</div> <!-- // wrapper -->
 <?php get_footer(); ?>

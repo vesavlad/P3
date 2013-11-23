@@ -12,7 +12,6 @@ if ( ! class_exists( 'P3Ajax_Read' ) ) {
 if ( defined('DOING_AJAX') && DOING_AJAX && isset( $_REQUEST['P3ajax'] ) ) {
 	add_action( 'admin_init', array( 'P3Ajax', 'dispatch' ) );
 }
-$P3Options = get_option('P3Options');
 
 /*
  * We include all of P3Ajax_Read's methods so that the old, deprecated API (db_version=1) still works for logged in users.
@@ -185,7 +184,7 @@ class P3Ajax extends P3Ajax_Read {
 	 * Create a post.
 	 */
 	public static function new_post() {
-		global $user_ID, $P3Options;
+		global $user_ID;
 
 		if ( empty( $_POST['action'] ) || $_POST['action'] != 'new_post' ) {
 		    die( '-1' );
@@ -195,7 +194,7 @@ class P3Ajax extends P3Ajax_Read {
 		}
 		
 		if ( ! ( current_user_can( 'publish_posts' ) ||
-		       ( $P3Options['P3_allow_users_publish'] ) && $user_ID ) ) {
+		       ( ot_get_option('postingaccess') ) && $user_ID ) ) {
 
 			die( '<p>'.__( 'Error: not allowed to post.', 'P3' ).'</p>' );
 		}

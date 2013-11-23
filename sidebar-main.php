@@ -5,7 +5,7 @@
  * @package P3
  */
 ?>
-<?php if ( !P3_get_hide_sidebar() ) : ?>
+<?php if ( !P3_get_hide_main_sidebar() ) : ?>
 	<div id="main-sidebar">
 	<?php do_action( 'before_sidebar' ); ?>
 

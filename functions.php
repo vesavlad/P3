@@ -10,13 +10,19 @@ P3_maybe_define( 'P3_INC_URL',  get_template_directory_uri() . '/inc' );
 P3_maybe_define( 'P3_JS_PATH',  get_template_directory()     . '/js'  );
 P3_maybe_define( 'P3_JS_URL',   get_template_directory_uri() . '/js'  );
 
+add_filter( 'ot_show_pages', '__return_false' );
+add_filter( 'ot_show_new_layout', '__return_false' );
+add_filter( 'ot_theme_mode', '__return_true' );
+load_template( trailingslashit( get_template_directory() ) . 'option-tree/ot-loader.php' );
+load_template( trailingslashit( get_template_directory() ) . 'inc/theme-options.php' );
+
 class P3 {
 	/**
 	 * DB version.
 	 *
 	 * @var int
 	 */
-	var $db_version = 3;
+	var $db_version = 4;
 
 	/**
 	 * Options.
@@ -50,7 +56,7 @@ class P3 {
 
 		// Include the P3 components
 		$includes = array( 'compat', 'terms-in-comments', 'js-locale',
-			'mentions', 'search', 'js', 'options-page', 'widgets/recent-tags', 'widgets/recent-comments',
+			'mentions', 'search', 'js', 'widgets/recent-tags', 'widgets/recent-comments',
 			'list-creator' );
 
 		require_once( P3_INC_PATH . "/template-tags.php" );
@@ -184,7 +190,6 @@ $themecolors = array(
 	'url'    => 'd54e21',
 );
 
-$P3Options = get_option("P3Options");
 
 /**
  * Setup P3 Theme.
@@ -197,6 +202,10 @@ function P3_setup() {
 	require_once( get_template_directory() . '/inc/custom-header.php' );
 	P3_setup_custom_header();
 
+	if ( function_exists( 'add_theme_support' ) ) {
+		add_theme_support( 'post-thumbnails' );
+	}
+
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'post-formats', P3_get_supported_post_formats( 'post-format' ) );
 
@@ -208,8 +217,8 @@ function P3_setup() {
 		'primary' => __( 'Primary Menu', 'P3' ),
 	) );
 
-	if ( is_admin() && false === get_option( 'prologue_show_titles' ) )
-		add_option( 'prologue_show_titles', 1 );
+	if ( is_admin() && false === get_option( 'posttitles-hide' ) )
+		add_option( 'posttitles-hide', 1 );
 }
 add_filter( 'after_setup_theme', 'P3_setup' );
 
@@ -221,17 +230,16 @@ function P3_register_main_sidebar() {
 }
 add_filter( 'widgets_init', 'P3_register_main_sidebar' );
 
-function P3_register_footer_sidebar() {
+function P3_register_footer_bar() {
 	register_sidebar( array(
-		'name' => __( 'Footer Sidebar', 'P3' ),
-		'id' => 'p3_footer_sidebar',
+		'name' => __( 'Footer Bar', 'P3' ),
+		'id' => 'p3_footer_bar',
 	) );
 }
-add_filter( 'widgets_init', 'P3_register_footer_sidebar');
+add_filter( 'widgets_init', 'P3_register_footer_bar');
 
 function P3_background_color() {
-	global $P3Options;
-	$background_color = $P3Options[ 'P3_background_color' ];
+	$background_color = ot_get_option('background-color');
 
 	if ( '' != $background_color ) :
 	?>
@@ -245,8 +253,7 @@ function P3_background_color() {
 add_action( 'wp_head', 'P3_background_color' );
 
 function P3_background_image() {
-	global $P3Options;
-	$P3_background_image = $P3Options[ 'P3_background_image' ];
+	$P3_background_image = ot_get_option('background-image');
 
 	if ( 'none' == $P3_background_image || '' == $P3_background_image )
 		return false;
@@ -266,7 +273,7 @@ function P3_background_image() {
 ?>
 	<style type="text/css">
 		body {
-			background-image: url( <?php echo get_template_directory_uri() . '/i/backgrounds/pattern-' . sanitize_key( $P3Options['P3_background_image'] ) . '.png' ?> );
+			background-image: url( <?php echo get_template_directory_uri() . '/i/backgrounds/pattern-' . sanitize_key( ot_get_option('background-image') ) . '.png' ?> );
 		}
 	</style>
 <?php
@@ -286,8 +293,7 @@ add_action( 'wp_head', 'P3_background_image' );
  * @since P3 1.5
  */
 function P3_body_class_background_image( $classes ) {
-	global $P3Options;
-	$image = $P3Options[ 'P3_background_image' ];
+	$image = ot_get_option('background-image');
 
 	if ( empty( $image ) || 'none' == $image )
 		return $classes;
@@ -328,7 +334,6 @@ function P3_title( $before = '<h2>', $after = '</h2>', $echo = true ) {
  */
 function P3_the_title( $before = '<h2>', $after = '</h2>', $echo = true ) {
 	global $post;
-	global $P3Options;
 	
 	$temp = $post;
 	$t = apply_filters( 'the_title', $temp->post_title );
@@ -338,7 +343,7 @@ function P3_the_title( $before = '<h2>', $after = '</h2>', $echo = true ) {
 	$out = '';
 
 	// Don't show post title if turned off in options or title is default text
-	if ( 1 != (int) $P3Options[ 'prologue_show_titles' ] || 'Post Title' == $title )
+	if ( 1 == (int) ot_get_option('posttitles-hide') || 'Post Title' == $title )
 		return false;
 
 	$content = trim( $content );
@@ -660,9 +665,15 @@ function prologue_poweredby_link() {
 	return apply_filters( 'prologue_poweredby_link', sprintf( '<a href="%1$s" rel="generator">%2$s</a>', esc_url( __('http://wordpress.org/', 'P3') ), sprintf( __('Proudly powered by %s.', 'P3'), 'WordPress' ) ) );
 }
 
-function P3_hidden_sidebar_css() {
-	global $P3Options;
-	$hide_sidebar = $P3Options[ 'P3_hide_sidebar' ];
+
+function post_thumbnail_with_size($width=734, $height=150, $alignment = "tc")
+{
+	$large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
+	echo "<img src='".get_template_directory_uri()."/inc/timthumb.php?src=".$large_image_url[0]."&h=".$height."&w=".$width."&a=".$alignment."' alt=''/>";;
+}
+
+function P3_hidden_main_sidebar_css() {
+	$hide_sidebar = P3_get_hide_main_sidebar();
 		$sleeve_margin = ( is_rtl() ) ? 'margin-left: 0;' : 'margin-right: 0;';
 	if ( '' != $hide_sidebar ) :
 	?>
@@ -673,7 +684,7 @@ function P3_hidden_sidebar_css() {
 	</style>
 	<?php endif;
 }
-add_action( 'wp_head', 'P3_hidden_sidebar_css' );
+add_action( 'wp_head', 'P3_hidden_main_sidebar_css' );
 
 // Network signup form
 function P3_before_signup_form() {
@@ -685,6 +696,16 @@ function P3_after_signup_form() {
 	echo '</div></div>';
 }
 add_action( 'after_signup_form', 'P3_after_signup_form' );
+
+
+/*  Custom favicon
+/* ------------------------------------ */
+function P3_favicon() {
+	if ( ot_get_option('favicon') ) {
+		echo '<link rel="shortcut icon" href="'.ot_get_option('favicon').'" />'."\n";
+	}
+}
+add_filter( 'wp_head', 'P3_favicon' );
 
 /**
  * Returns accepted post formats.

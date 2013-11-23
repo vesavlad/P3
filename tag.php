@@ -6,6 +6,8 @@
  */
 ?>
 <?php get_header(); ?>
+<div id="wrapper">
+	<?php get_sidebar('main'); ?>
 <?php $tag_obj = $wp_query->get_queried_object(); ?>
 
 <div class="sleeve_main">
@@ -44,4 +46,7 @@
 
 </div> <!-- sleeve -->
 
+<div class="clear"></div>
+	<?php get_sidebar('footer'); ?>
+</div> <!-- // wrapper -->
 <?php get_footer(); ?>

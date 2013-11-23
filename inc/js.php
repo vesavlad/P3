@@ -258,8 +258,7 @@ class P3_JS {
 add_action( 'init', array( 'P3_JS', 'init' ) );
 
 function P3_toggle_threads() {
-	$P3Options = get_option ( "P3Options" );
-	$hide_threads = $P3Options [ 'P3_hide_threads' ]; ?>
+	$hide_threads = ot_get_option('hidethreads'); ?>
 
 	<script type="text/javascript">
 	/* <![CDATA[ */

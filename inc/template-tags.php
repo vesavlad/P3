@@ -6,7 +6,6 @@
  * @since unknown
  */
 
-$P3Options = get_option("P3Options");
 
 function P3_body_class( $classes ) {
 	if ( is_tax( P3_MENTIONS_TAXONOMY ) )
@@ -18,9 +17,9 @@ function P3_body_class( $classes ) {
 add_filter( 'body_class', 'P3_body_class' );
 
 function P3_user_can_post() {
-	global $user_ID, $P3Options;
+	global $user_ID;
 
-	if ( current_user_can( 'publish_posts' ) || ( $P3Options[ 'P3_allow_users_publish' ] && $user_ID ) )
+	if ( current_user_can( 'publish_posts' ) || ( ot_get_option('postingaccess') && $user_ID ) )
 		return true;
 
 	return false;
@@ -172,8 +171,7 @@ function P3_user_prompt() {
 	echo P3_get_user_prompt();
 }
 	function P3_get_user_prompt() {
-		global $P3Options;
-		$prompt = $P3Options[ 'P3_prompt_text' ];
+		$prompt = ot_get_option('post-prompt');
 
 		return apply_filters( 'P3_get_user_prompt', sprintf ( __( 'Hi, %s. %s', 'P3' ), esc_html( P3_get_user_display_name() ), ( $prompt != '' ) ? stripslashes( $prompt ) : __( 'Whatcha up to?', 'P3' ) ) );
 	}
@@ -206,9 +204,13 @@ function P3_media_buttons() {
 	echo $buttons;
 }
 
-function P3_get_hide_sidebar() {
-	global $P3Options;
-	return ( '' != $P3Options[ 'P3_hide_sidebar' ] ) ? true : false;
+function P3_get_hide_main_sidebar() {
+	return ot_get_option('mainsidebar-hide');
+}
+
+function P3_get_hide_footer_bar(){
+	echo ot_get_option('footerbar-hide');
+	return ot_get_option('footerbar-hide');
 }
 
 function P3_archive_author() {

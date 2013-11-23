@@ -18,16 +18,11 @@
 <div id="header">
 <?php do_action( 'before' ); ?>
 	<div class="image">
-		<?php $P3Options = get_option('P3Options');?>
-		<?php if($P3Options['P3_header_user_image']!=""):?>
-			<img src="<?php echo esc_url($P3Options['P3_header_user_image']) ?>" alt="<?php bloginfo( 'name' ); ?>" height="120px" />
-		<?php else: ?>
-			<img src="<?php bloginfo('template_directory');?>/i/logo.jpg" alt="<?php bloginfo( 'name' ); ?>" height="120px" />
-		<?php endif;?>
+		<img src="<?php echo esc_url(ot_get_option('custom-logo', get_template_directory_uri().'/i/logo.jpg')) ?>" alt="<?php bloginfo( 'name' ); ?>" height="120px" />
 	</div>
 	<div class="sleeve">
 		<h1><a href="<?php echo home_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
-		<?php if ( get_bloginfo( 'description' ) ) : ?>
+		<?php if ( get_bloginfo( 'description' ) && !ot_get_option('site-description')) : ?>
 			<small><?php bloginfo( 'description' ); ?></small>
 		<?php endif; ?>
 		<a class="secondary" href="<?php echo home_url( '/' ); ?>"></a>
@@ -48,7 +43,3 @@
 	) ); ?>
 </div>
 <?php endif; ?>
-
-<div id="wrapper">
-
-	<?php get_sidebar('main'); ?>

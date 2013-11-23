@@ -6,7 +6,9 @@
  */
 ?>
 <?php get_header(); ?>
-
+<div id="wrapper">
+	<?php get_sidebar('main'); ?>
+	
 <div class="sleeve_main">
 
 	<div id="main">
@@ -23,6 +25,15 @@
 				</div>
 
 				<ul id="postlist">
+					<?php
+						if ( has_post_thumbnail() ) {
+						    // the current post has a thumbnail
+						    post_thumbnail_with_size();
+						} else {
+						    // the current post lacks a thumbnail
+						}
+					?>
+
 		    		<?php P3_load_entry(); ?>
 				</ul>
 
@@ -47,4 +58,7 @@
 
 </div> <!-- sleeve -->
 
+<div class="clear"></div>
+	<?php get_sidebar('footer'); ?>
+</div> <!-- // wrapper -->
 <?php get_footer(); ?>
