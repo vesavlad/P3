@@ -31,6 +31,21 @@ version 1.0.4
 - fixed background color when selecting disolve background type
 - removed width, height constrains for custom header image inside backpannel administration
 
-version 1.0.4
+version 1.0.5
 - fixed Google Chrome comment issue
 - fixed need to reload page to see new submitted comment
+
+version 1.1.0
+- add fullwidth page template (moved sidebars declaration inside
+content builder page eg. page.php, index.php)
+- new theme options menu (removed old options-page.php and replaced
+with option tree)
+- add support for featured image
+- timthumb resizer used for croping images
+- new google font used for website: Roboto and Roboto Condensed (used
+for headers)
+- added ability to hide sidebars independently
+
+version 1.1.1
+- changed default logo image
+- changed footer text
