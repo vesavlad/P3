@@ -49,3 +49,6 @@ for headers)
 version 1.1.1
 - changed default logo image
 - changed footer text
+
+version 1.1.2
+- replace timthumb with mc-image-resize

@@ -209,7 +209,6 @@ function P3_get_hide_main_sidebar() {
 }
 
 function P3_get_hide_footer_bar(){
-	echo ot_get_option('footerbar-hide');
 	return ot_get_option('footerbar-hide');
 }
 

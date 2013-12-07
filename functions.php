@@ -4,7 +4,7 @@
  */
 
 require_once( get_template_directory() . '/inc/utils.php' );
-
+require_once( get_template_directory() . '/inc/mr-image-resize.php');
 P3_maybe_define( 'P3_INC_PATH', get_template_directory()     . '/inc' );
 P3_maybe_define( 'P3_INC_URL',  get_template_directory_uri() . '/inc' );
 P3_maybe_define( 'P3_JS_PATH',  get_template_directory()     . '/js'  );
@@ -666,10 +666,11 @@ function prologue_poweredby_link() {
 }
 
 
-function post_thumbnail_with_size($width=734, $height=150, $alignment = "tc")
+function post_thumbnail_with_size($width=734, $height=150, $alignment = "c")
 {
 	$large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
-	echo "<img src='".get_template_directory_uri()."/inc/timthumb.php?src=".$large_image_url[0]."&h=".$height."&w=".$width."&a=".$alignment."' alt=''/>";;
+	$thumbnail = mr_image_resize($large_image_url[0], $width, $height, true, $alignment, false);
+	echo "<img src='".$thumbnail."' alt=''/>";;
 }
 
 function P3_hidden_main_sidebar_css() {
