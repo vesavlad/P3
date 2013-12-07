@@ -106,10 +106,8 @@ class P3Ajax extends P3Ajax_Read {
 		if ( !current_user_can( 'edit_post', $post_id )) {
 			die( '<p>'.__( 'Error: not allowed to edit post.', 'P3' ).'</p>' );
 		}
-
 		$post_format = P3_get_post_format( $post_id );
-
-		$new_post_content = sanitize_text_field($_POST['content']);
+		$new_post_content = esc_html($_POST['content']);
 
 		// Add the quote citation to the content if it exists
 		if ( ! empty( $_POST['citation'] ) && 'quote' == $post_format ) {
@@ -169,7 +167,7 @@ class P3Ajax extends P3Ajax_Read {
 			die( '<p>'.__( 'Error: not allowed to edit this comment.', 'P3' ).'</p>' );
 		}
 
-		$comment_content = sanitize_text_field($_POST['comment_content']);
+		$comment_content = esc_html($_POST['comment_content']);
 
 		wp_update_comment( array(
 			'comment_content'	=> $comment_content,
@@ -203,8 +201,8 @@ class P3Ajax extends P3Ajax_Read {
 
 		$user           = wp_get_current_user();
 		$user_id        = $user->ID;
-		$post_content   = sanitize_text_field($_POST['posttext']);
-		$tags           = trim( sanitize_text_field($_POST['tags'] ));
+		$post_content   = esc_html($_POST['posttext']);
+		$tags           = trim( esc_html($_POST['tags'] ));
 		$title          = sanitize_text_field($_POST['post_title']);
 		$post_type      = isset( $_POST['post_type'] ) ? sanitize_text_field($_POST['post_type']) : 'post';
 
@@ -221,11 +219,11 @@ class P3Ajax extends P3Ajax_Read {
 		$post_format = 'status';
 		$accepted_post_formats = apply_filters( 'P3_accepted_post_cats', P3_get_supported_post_formats() ); // Keep 'P3_accepted_post_cats' filter for back compat (since P3 1.3.4)
 		if ( in_array( $_POST['post_format'], $accepted_post_formats ) )
-			$post_format = sanitize_text_field($_POST['post_format']);
+			$post_format = esc_html($_POST['post_format']);
 
 		// Add the quote citation to the content if it exists
 		if ( ! empty( $_POST['post_citation'] ) && 'quote' == $post_format )
-			$post_content = '<p>' . $post_content . '</p><cite>' . sanitize_text_field($_POST['post_citation']) . '</cite>';
+			$post_content = '<p>' . $post_content . '</p><cite>' . esc_html($_POST['post_citation']) . '</cite>';
 
 		$post_id = wp_insert_post( array(
 			'post_author'   => $user_id,
