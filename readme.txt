@@ -52,3 +52,6 @@ version 1.1.1
 
 version 1.1.2
 - replace timthumb with mc-image-resize
+
+version 1.1.3
+- generic logo updated
