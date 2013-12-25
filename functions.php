@@ -56,7 +56,7 @@ class P3 {
 
 		// Include the P3 components
 		$includes = array( 'compat', 'terms-in-comments', 'js-locale',
-			'mentions', 'search', 'js', 'widgets/recent-tags', 'widgets/recent-comments',
+			'mentions', 'search', 'js', 'widgets/recent-tags', 'widgets/recent-comments', 'widgets/submenu',
 			'list-creator' );
 
 		require_once( P3_INC_PATH . "/template-tags.php" );

@@ -55,3 +55,8 @@ version 1.1.2
 
 version 1.1.3
 - generic logo updated
+
+version 1.1.4
+- fixed callendar
+- fixed image posting
+- added submenu sidebar

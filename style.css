@@ -4,7 +4,7 @@ Theme URI: http://vlad.kano.ro/p3-theme/
 Author: Kano
 Author URI: http://vlad.kano.ro/
 Description: A group blog theme for short update messages. This theme is an optimised version for a very known theme named P2. Featuring: Hassle-free posting from the front page. Perfect for group blogging, or as a liveblog theme. Dynamic page updates. Threaded comment display on the front page. In-line editing for posts and comments. Live tag suggestion based on previously used tags. A show/hide feature for comments, to keep things tidy. Real-time notifications when a new comment or update is posted. Super-handy keyboard shortcuts. Helvetica Neue for you modern font lovers.
-Version: 1.1.3
+Version: 1.1.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blue, custom-colors, two-columns, fixed-width, rtl-language-support, right-sidebar, white, light, front-page-post-form, translation-ready, custom-background, custom-header, custom-menu, post-formats, sticky-post, theme-options
@@ -2097,4 +2097,48 @@ div.possibly-related {
 			background-image: url( i/icons-2x.png );
 			background-size: 816px 16px;
 		}
+}
+
+
+/* = Calendar styling 
+--------------------------------------------------------*/
+#wp-calendar{
+	width: 100%;
+}
+#wp-calendar caption{
+	font-weight: bold;
+	text-transform:  uppercase;
+	font-size: 12px;
+	
+}
+#wp-calendar thead{
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 10px;
+}
+#wp-calendar thead tr th{
+	font-weight: bold;
+	font-size: 12px;
+	border:0px;
+	padding:3px;
+	text-align: center;
+}
+
+#wp-calendar tbody tr td{
+	font-weight: bold;
+	border:0px;
+	padding:3px;
+	text-align: center;
+}
+#wp-calendar .pad{
+	border: 0px;
+}
+#wp-calendar #today{
+	
+}
+#wp-calendar #today a{
+	background-color: #EA1414;
+	border:0px;
+	padding: 1px 3px 1px 3px;
+	border-radius: 50px;
+	color: white;
 }

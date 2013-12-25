@@ -107,8 +107,8 @@ class P3Ajax extends P3Ajax_Read {
 			die( '<p>'.__( 'Error: not allowed to edit post.', 'P3' ).'</p>' );
 		}
 		$post_format = P3_get_post_format( $post_id );
-		$new_post_content = esc_html($_POST['content']);
-
+		//$new_post_content = esc_html($_POST['content']);  we cannot use esc_html because it turns " into &quot; and brakes the posts with images
+		$new_post_content = $_POST['content'];
 		// Add the quote citation to the content if it exists
 		if ( ! empty( $_POST['citation'] ) && 'quote' == $post_format ) {
 			$new_post_content = '<p>' . $new_post_content . '</p><cite>' . sanitize_text_field($_POST['citation']) . '</cite>';
@@ -167,8 +167,8 @@ class P3Ajax extends P3Ajax_Read {
 			die( '<p>'.__( 'Error: not allowed to edit this comment.', 'P3' ).'</p>' );
 		}
 
+		//$comment_content = esc_html($_POST['comment_content']); -- here the problem that was reported for posts does not apply because will never have images
 		$comment_content = esc_html($_POST['comment_content']);
-
 		wp_update_comment( array(
 			'comment_content'	=> $comment_content,
 			'comment_ID' => $comment_id
@@ -201,7 +201,7 @@ class P3Ajax extends P3Ajax_Read {
 
 		$user           = wp_get_current_user();
 		$user_id        = $user->ID;
-		$post_content   = esc_html($_POST['posttext']);
+		$post_content   = $_POST['posttext'];
 		$tags           = trim( esc_html($_POST['tags'] ));
 		$title          = sanitize_text_field($_POST['post_title']);
 		$post_type      = isset( $_POST['post_type'] ) ? sanitize_text_field($_POST['post_type']) : 'post';
