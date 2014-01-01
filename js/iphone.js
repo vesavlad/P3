@@ -2,10 +2,10 @@
  * Handles toggling the main navigation and new post form menu on iPhone.
  */
 jQuery( document ).ready( function( $ ) {
-	var $masthead   = $( '#header' ),
+	var $mastnav    = $( '#header-navmenu' ),
 		$postToggle = $( '#mobile-post-button' ),
 		$postbox    = $( '#postbox' ),
-		$menu       = $masthead.find( '.menu' ),
+		$menu       = $mastnav.find( '.menu' ),
 	    timeout     = false;
 
 	$postToggle.click( function( e ) {
@@ -16,8 +16,8 @@ jQuery( document ).ready( function( $ ) {
 			$postbox.slideDown( 'fast' );
 	} );
 
-	$masthead.find( '.site-navigation' ).removeClass( 'main-navigation' ).addClass( 'main-small-navigation' );
-	$masthead.find( '.site-navigation h1' ).removeClass( 'assistive-text' ).addClass( 'menu-toggle' );
+	$mastnav.find( '.site-navigation' ).removeClass( 'main-navigation' ).addClass( 'main-small-navigation' );
+	$mastnav.find( '.site-navigation h1' ).removeClass( 'assistive-text' ).addClass( 'menu-toggle' );
 
 	$( '.menu-toggle' ).click( function( e ) {
 		e.preventDefault();

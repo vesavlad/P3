@@ -206,11 +206,14 @@ blockquote + blockquote {
 	*/
 	margin: 10px 0px;
 }
+#header-navmenu{
+	width: 1024px;
+	margin: 5px auto;
+}
 #navigation{
 	clear: both;
-	width: 1024px;
-	margin: 0 auto;
-	position: relative;
+	float: left;
+	width: 100%;
 }
 
 #wrapper {

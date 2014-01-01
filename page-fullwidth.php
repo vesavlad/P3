@@ -18,7 +18,7 @@
 
 				<?php while ( have_posts() ) : the_post(); ?>
 					<?php
-						if ( has_post_thumbnail() ) {
+						if ( has_post_thumbnail() && !P3_is_iphone()) {
 						    // the current post has a thumbnail
 						    if(is_front_page())
 						    	post_thumbnail_with_size(996,255,"c"); //larger image for frontpage
