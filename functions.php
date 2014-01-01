@@ -670,7 +670,7 @@ function post_thumbnail_with_size($width=734, $height=150, $alignment = "c")
 {
 	$large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large');
 	$thumbnail = mr_image_resize($large_image_url[0], $width, $height, true, $alignment, false);
-	echo "<img src='".$thumbnail."' alt=''/>";;
+	echo "<div id='post-image'><img src='".$thumbnail."' alt=''/></div>";
 }
 
 function P3_hidden_main_sidebar_css() {

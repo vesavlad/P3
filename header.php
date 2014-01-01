@@ -34,12 +34,14 @@
 </div>
 
 <?php if ( has_nav_menu( 'primary' ) ) : ?>
-<div id="navigation" role="navigation" class="site-navigation main-navigation">
-	<h1 class="assistive-text"><?php _e( 'Menu', 'P3' ); ?></h1>
-	<div class="assistive-text skip-link"><a href="#main" title="<?php esc_attr_e( 'Skip to content', 'P3' ); ?>"><?php _e( 'Skip to content', 'P3' ); ?></a></div>
-	<?php wp_nav_menu( array(
-		'theme_location' => 'primary',
-		'fallback_cb'    => '__return_false',
-	) ); ?>
-</div>
+	<div id="header-navmenu">
+		<div id="navigation" role="navigation" class="site-navigation main-navigation">
+			<h1 class="assistive-text"><?php _e( 'Menu', 'P3' ); ?></h1>
+			<div class="assistive-text skip-link"><a href="#main" title="<?php esc_attr_e( 'Skip to content', 'P3' ); ?>"><?php _e( 'Skip to content', 'P3' ); ?></a></div>
+			<?php wp_nav_menu( array(
+				'theme_location' => 'primary',
+				'fallback_cb'    => '__return_false',
+			) ); ?>
+		</div>
+	</div>
 <?php endif; ?>

@@ -12,7 +12,7 @@ html {
 }
 
 #header_img img,
-#sidebar,
+#main-sidebar, #footer-sidebar, #post-image, 
 #postbox .avatar {
 	display: none;
 }
@@ -20,6 +20,7 @@ html {
 
 /* =Header
 ----------------------------------------------------- */
+
 
 body #header {
 	background: none;
@@ -31,11 +32,11 @@ body #header {
 }
 body #header .sleeve {
 	background: none;
-	background-color: #666 !important;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#666)) !important;
-	border-color: #555;
+	/*background-color: #666 !important;*/
+	/*background-image: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#666)) !important;*/
+	/*border-color: #555;
 	border-style: solid;
-	border-width: 0 0 1px 0;
+	border-width: 0 0 1px 0;*/
 	margin-top: 0;
 	max-height: none;
 	min-height: 40px;
@@ -45,13 +46,10 @@ body #header .sleeve {
 	height: auto;
 }
 #header h1 {
-	color: #fff;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: bold;
 	margin: 0 auto;
-	padding: 12px 0 12px 10px;
-	text-indent: 0;
-	text-shadow: 0px -1px 0px #555;
+	/*padding: 12px 0 12px 10px;*/
 	vertical-align: middle;
 }
 #header img#mobile-blavatar {
@@ -63,7 +61,7 @@ body #header .sleeve {
 	margin-left: 2px;
 }
 #header h1 a {
-	color: #fff !important;
+	color: #888 !important;
 }
 #header small {
 	display: none;
@@ -93,15 +91,21 @@ body #header .sleeve {
 }
 
 
+
 /* =Menu
 ----------------------------------------------------- */
+#navigation{
+	width: 320px;
+}
 
-#header h1.menu-toggle {
+#navigation h1.menu-toggle {
 	background: #999;
 	display: block;
 	font-size: 12px;
+	/*
 	padding: 7px 0;
 	text-align: center;
+	*/
 }
 .main-small-navigation .menu {
 	background: #fff;
