@@ -103,7 +103,7 @@ class P3_JS {
 
 		// Generate dependencies for P3
 		$depends = array( 'jquery', 'utils', 'jquery-color', 'comment-reply',
-			'scrollit', 'wp-locale', 'P3-spin' );
+			'scrollit', 'wp-locale', 'P3-spin');
 
 		if ( is_user_logged_in() ) {
 			$depends[] = 'jeditable';
@@ -121,7 +121,7 @@ class P3_JS {
 		wp_enqueue_script( 'P3js',
 			P3_JS_URL . '/p3.js',
 			$depends,
-			'20131117'
+			'20140102'
 		);
 
 		wp_localize_script( 'P3js', 'P3txt', array(

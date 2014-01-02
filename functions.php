@@ -252,6 +252,18 @@ function P3_background_color() {
 }
 add_action( 'wp_head', 'P3_background_color' );
 
+function P3_Add_IE_Support(){
+	if (P3_is_IE()) {
+		$PIEDirectory = get_template_directory_uri()."/js/PIE";
+		?>
+		<style type="text/css">
+			#userimage , #wrapper, #main img.avatar {behavior: url(<?php echo $PIEDirectory."/PIE.htc"?>);}
+		</style>
+		<?php
+	}
+}
+add_action( 'wp_head', 'P3_Add_IE_Support' );
+
 function P3_background_image() {
 	$P3_background_image = ot_get_option('background-image');
 
@@ -737,6 +749,28 @@ function P3_get_supported_post_formats( $type = 'all' ) {
 
 	return apply_filters( 'P3_get_supported_post_formats', $post_formats );
 }
+
+
+/**
+ * Is site being viewed with an IE Browser 1-8?
+ *
+ * For testing you can modify the output with a filter:
+ * add_filter( 'P3_is_IE', '__return_true' );
+ *
+ * @return bool
+ * @since P3 1.4
+ */
+function P3_is_IE() {
+	$output = false;
+
+	if ( preg_match('/(?i)msie [1-8]/',$_SERVER['HTTP_USER_AGENT']) )
+		$output = true;
+
+	$output = (bool) apply_filters( 'P3_is_IE', $output );
+
+	return $output;
+}
+
 
 /**
  * Is site being viewed on an iPhone or iPod Touch?

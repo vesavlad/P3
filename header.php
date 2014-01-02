@@ -17,8 +17,8 @@
 
 <div id="header">
 <?php do_action( 'before' ); ?>
-	<div class="image">
-		<img src="<?php echo esc_url(ot_get_option('custom-logo', get_template_directory_uri().'/i/logo.jpg')) ?>" alt="<?php bloginfo( 'name' ); ?>" height="120px" />
+	<div id="userimage">
+		<img src="<?php echo esc_url(ot_get_option('custom-logo', get_template_directory_uri().'/i/logo.jpg')) ?>" alt="<?php bloginfo( 'name' ); ?>"/>
 	</div>
 	<div class="sleeve">
 		<h1><a href="<?php echo home_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
