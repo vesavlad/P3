@@ -60,3 +60,7 @@ version 1.1.4
 - fixed callendar
 - fixed image posting
 - added submenu sidebar
+
+version 1.1.5
+- fixed iphone problems
+- fixed IE css3 compatibility
